@@ -1,0 +1,20 @@
+/* цвет фона и рамки навигационного меню */
+.navbar {
+    background-color: transparent;
+    border-color: black;
+}
+
+/* Цвет пунктов навигационного меню */
+.navbar .navbar-nav > li > a {
+    color: white;
+    font-family: starwars;
+    font-size: 20px;
+}
+
+/* Цвет пункта меню, при поднесении к нему курсора мышки или при его нахождении в фокусе */
+.navbar .navbar-nav > li > a:hover,
+.navbar .navbar-nav > li > a:focus {
+    color: blueviolet;
+    background-color: transparent;
+}
+
