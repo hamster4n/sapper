@@ -154,11 +154,11 @@ function setWallpaper(size1, size2){
     if(size1 == 10){
         result = 'url(img/back03.jpg)';
     } else if (size1 == 16 && size2 == 16){
-        result = 'url(img/back06.jpg)';
+        result = 'url(img/back01.jpg)';
     } else {
         result = 'url(img/back05.jpg)';
     }
-    document.getElementById('field').style.backgroundImage = result;
+    document.getElementById('field').style.background = result + "no-repeat center";
 }
 
 

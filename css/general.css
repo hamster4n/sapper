@@ -1,42 +1,38 @@
-body {
-    background-color: darkgrey;
-}
 @font-face {
     font-family: starwars;
-    src: url(../font/STARWARS.woff);
+    src: url(../fonts/STARWARS.woff);
 }
 
 
 #workingSpace{
-    width: 1000px;
-    height: 600px;
+    width: 80%;
     background-image: url("../img/stars-bg.jpg");
-    margin: auto;
+    margin: 5% auto;
 }
 
 #header{
     height: 35px;
-    background-color: black;
     text-align: center;
-    padding-top: 15px;
     font-family: starwars;
     font-size: 30px;
     color: white;
 }
 
 #menu{
-    height: 35px;
-    /*position: absolute;*/
+    background-color: transparent;
+    font-family: starwars;
+    font-size: 20px;
+    color: white;
 }
 
 #field{
-    width: 900px;
+    width: 100%;
     height: 450px;
-    margin: 20px auto;
-    background-image: url("../img/back03.jpg");
-    /*position: relative;*/
+    margin: 20px 0px;
+    text-align: -webkit-center;
 }
 
+/*TODO настроить вывод этого блока*/
 #divPlayingField{
     margin: auto;
     position: absolute;
@@ -44,6 +40,7 @@ body {
     bottom: 0;
     left: 0;
     right: 0;
+    /*background-color: yellow;*/
 }
 
 
@@ -72,7 +69,6 @@ body {
 #difficult{
     width: 120px;
     height: 40px;
-    /*background-color: blueviolet;*/
     float: right;
     padding-top: 10px;
 }
