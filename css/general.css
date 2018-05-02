@@ -30,9 +30,10 @@
     height: 450px;
     margin: 20px 0px;
     text-align: -webkit-center;
+    display: block;
+    position: relative;
 }
 
-/*TODO настроить вывод этого блока*/
 #divPlayingField{
     margin: auto;
     position: absolute;
@@ -41,6 +42,7 @@
     left: 0;
     right: 0;
     /*background-color: yellow;*/
+
 }
 
 
