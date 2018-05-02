@@ -1,5 +1,6 @@
 var arrButton = [], //массив всех кнопок
-    allBombs = 0; //колличество бомб в игре
+    allBombs = 0, //колличество бомб в игре
+    cellEge = 27; //размер ребра ячейки
 
 
 
@@ -142,8 +143,8 @@ function zeroingOutDivPlayingField(){
 function generatePlayingField(size1, size2){
     var div = document.createElement("div");
     div.id = 'divPlayingField';
-    div.style.width = size1 * 27 + "px";
-    div.style.height = size2 * 27 + "px";
+    div.style.width = size1 * cellEge + "px";
+    div.style.height = size2 * cellEge + "px";
     setWallpaper(size1,size2);
     return div;
 }
