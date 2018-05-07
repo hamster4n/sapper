@@ -3,7 +3,6 @@
     src: url(../fonts/STARWARS.woff);
 }
 
-
 #workingSpace{
     width: 80%;
     background-image: url("../img/stars-bg.jpg");
@@ -11,7 +10,7 @@
 }
 
 #header{
-    height: 35px;
+    height: 45px;
     text-align: center;
     font-family: starwars;
     font-size: 30px;

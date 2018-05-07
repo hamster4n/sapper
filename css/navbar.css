@@ -4,11 +4,24 @@
     border-color: black;
 }
 
+.navbar-toggle{
+    color: white;
+}
+
+.dropdown > ul {
+    background-color: transparent;
+}
+
+.dropdown > ul > li > a{
+    color: white;
+}
+
 /* Цвет пунктов навигационного меню */
 .navbar .navbar-nav > li > a {
     color: white;
     font-family: starwars;
     font-size: 20px;
+    background-color: transparent;
 }
 
 /* Цвет пункта меню, при поднесении к нему курсора мышки или при его нахождении в фокусе */
@@ -17,4 +30,14 @@
     color: blueviolet;
     background-color: transparent;
 }
+
+/* Цвет и фон пункта меню в раскрывающихся списках, при поднесении к нему курсора мышки или при нахождении его в фокусе */
+.navbar .navbar-nav .open .dropdown-menu > li > a:hover,
+.navbar .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: white;
+    background-color: black;
+}
+
+
+
 
