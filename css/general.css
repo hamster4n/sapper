@@ -44,36 +44,11 @@
 
 }
 
-
 #footer{
     height: 40px;
     font-family: starwars;
     color: white;
 }
-
-#mines{
-    width: 120px;
-    height: 40px;
-    /*background-color: #4486F8;*/
-    float: right;
-    padding-top: 10px;
-}
-
-#time{
-    width: 120px;
-    height: 40px;
-    /*background-color: aqua;*/
-    float: right;
-    padding-top: 10px;
-}
-
-#difficult{
-    width: 120px;
-    height: 40px;
-    float: right;
-    padding-top: 10px;
-}
-
 
 .button {
     font-size: 1px;

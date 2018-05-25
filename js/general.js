@@ -1,16 +1,11 @@
 var arrButton = [], //массив всех кнопок
     allBombs = 0, //колличество бомб в игре
-    cellEge = 27; //размер ребра ячейки
+    cellEge = 27, //размер ребра ячейки
+    currentNumberOfMines = 0,
+    isGameOn,
+    difficultOnFooter;
+var hours = 0, minutes = 0, seconds = 0;
 
-
-
-//функция отображения времени решения задачи
-//отображение колличества оставшихся мин
-//падающая менюшка Игра (Новая/Настройки)/Справка (Посмотреть справку/О программе)
-//назначить звуки действиям
-//предусмотреть неквадратное поле!!!
-//поставить функцию, которая определит,что игрок выиграл (проверка при каждом ходе)
-//сделать стилизацию под звёздные войны. для каждого поля своя картинка и везде одинаковые звуки
 
 function openEmptyCells(numberButton) {
     var arr = numberButton.split("."),
@@ -36,7 +31,7 @@ function openEmptyCells(numberButton) {
 //открывает все кнопки в случае выбора кнопки с миной
 function openAllCells() {
     var buttonsAll = document.getElementsByClassName('button');
-    for (var y = 0; y < buttonsAll.length;) { //где-то добавляет +1 к счётчику. убрал у++ и норм ) но где?
+    for (var y = 0; y < buttonsAll.length;) {
         var numberButton = buttonsAll[y].id,
             objButton = document.getElementById(numberButton);
         replaceButtonToDiv(numberButton, objButton);
@@ -50,9 +45,12 @@ function markUnmarkCell() {
 
     if (objButton.firstChild == null) {
         objButton.innerHTML = ('<img src="img/flag.png">');
+        currentNumberOfMines--;
     } else {
         objButton.innerHTML = "";
+        currentNumberOfMines++;
     }
+    document.getElementById("mines").innerHTML = "" + currentNumberOfMines;
     return false;
 }
 
@@ -77,6 +75,7 @@ function openOneCell() {
     var numberButton = this.id,
         objButton = document.getElementById(numberButton);
     if (objButton.value == 1) {
+
         openAllCells();
     } else {  //если бомбы в ячейке нет
         replaceButtonToDiv(numberButton, objButton); //открываем ячейку
@@ -124,40 +123,46 @@ function generateGame(size1, size2) {
             document.getElementById(row + "." + col).bomb = calculateNumberBombs(row, col);
         }
     }
+    currentNumberOfMines = allBombs;
+    document.getElementById("mines").innerHTML = "" + currentNumberOfMines;
+    document.getElementById("difficult").innerHTML = "" + difficultOnFooter;
+    setInterval(showGameTimeOnFooter, 1000);
     //выдаём в "консоль" колличество бомб на игровом поле - временная штука. удалить
-    //document.getElementById('cell').innerHTML = ("всего бомб: " + allBombs + "<br/>");
+    // document.getElementById("cell").innerHTML = "всего бомб: " + allBombs + "<br/>";
 }
 
 
-
 //проверяем наличие игрового поля, и если таковое есть, то удаляем
-function zeroingOutDivPlayingField(){
+function zeroingOutDivPlayingField() {
     var element = document.getElementById('divPlayingField');
-    if(element){
+    if (element) {
         element.remove();
     }
 }
 
 
 //для каждого уровня сложности функция создаёт игровое поле соотвествующего размера
-function generatePlayingField(size1, size2){
+function generatePlayingField(size1, size2) {
     var div = document.createElement("div");
     div.id = 'divPlayingField';
     div.style.width = size1 * cellEge + "px";
     div.style.height = size2 * cellEge + "px";
-    setWallpaper(size1,size2);
+    setWallpaper(size1, size2);
     return div;
 }
 
-//установка фоновой картинки для поля каждого размера TODO подобрать другие заставки
-function setWallpaper(size1, size2){
+//установка фоновой картинки для поля каждого размера
+function setWallpaper(size1, size2) {
     var result;
-    if(size1 == 10){
+    if (size1 == 10) {
         result = 'url(img/back03.jpg)';
-    } else if (size1 == 16 && size2 == 16){
+        difficultOnFooter = "easy";
+    } else if (size1 == 16 && size2 == 16) {
         result = 'url(img/back01.jpg)';
+        difficultOnFooter = "normal";
     } else {
         result = 'url(img/back05.jpg)';
+        difficultOnFooter = "hard";
     }
     document.getElementById('field').style.background = result + "no-repeat center";
 }
@@ -182,8 +187,17 @@ function rndGenerator() {
     return result;
 }
 
-function soundClickBomb(){
+function soundClickBomb() {
     var audio = new Audio();
     audio.src = "sound/ligthsword.mp3";
     audio.autoplay = true;
 }
+
+function showGameTimeOnFooter() {
+    seconds++;
+    if (seconds === 60){seconds = 0; minutes++}
+    if (minutes === 60){minutes = 0; hours++}
+
+    document.getElementById("time").innerHTML = ((hours < 10) ? "0" : "")  + hours + ":" + ((minutes < 10) ? "0" : "") + minutes + ":" + ((seconds < 10) ? "0" : "") + seconds;
+}
+
