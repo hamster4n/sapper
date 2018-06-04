@@ -70,17 +70,15 @@ function calculateNumberBombs(row, col) {
     return numberBombs;
 }
 
-function openOneCell() {
-    soundClickBomb(); //временно
+function openOneCell(){
+    soundClickCell();
     var numberButton = this.id,
         objButton = document.getElementById(numberButton);
     if (objButton.value == 1) {
-
         openAllCells();
-    } else {  //если бомбы в ячейке нет
-        replaceButtonToDiv(numberButton, objButton); //открываем ячейку
-        if (objButton.bomb == 0) {                       //если в ячейке ноль, то проверяем соседние на 0 и открываем их
-            //document.getElementById('cell').innerHTML += ("нулевая!<br/>"); //удалить
+    } else {
+        replaceButtonToDiv(numberButton, objButton);
+        if (objButton.bomb == 0) {
             openEmptyCells(numberButton);
         }
     }
@@ -187,7 +185,7 @@ function rndGenerator() {
     return result;
 }
 
-function soundClickBomb() {
+function soundClickCell() {
     var audio = new Audio();
     audio.src = "sound/ligthsword.mp3";
     audio.autoplay = true;
