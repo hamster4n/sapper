@@ -9,9 +9,12 @@ var hours = 0, minutes = 0, seconds = 0;
 
 function openEmptyCells(numberButton) {
     var arr = numberButton.split("."),
-        objButton = document.getElementById(numberButton),
         row = parseInt(arr[0]),
         col = parseInt(arr[1]);
+    openNighborCellsWithoutBombs(row, col);
+}
+
+function openNighborCellsWithoutBombs(row, col) {
     for (var i = row - 1; i <= row + 1; i++) {
         for (var j = col - 1; j <= col + 1; j++) {
             var element = document.getElementById(i + "." + j);
@@ -19,14 +22,14 @@ function openEmptyCells(numberButton) {
                 if (element.bomb == 0) {
                     replaceButtonToDiv((i + "." + j), element);
                     openEmptyCells(i + "." + j);
-                    //доработать условие. должны открываться и те, ячейки, в которых не ноль, но и нет бомбы
-                    //тут должна быть рекурсия!!!
+                    openNighborCellsWithoutBombs(i,j);
+                } else {
+                    replaceButtonToDiv(element.id, element);
                 }
             }
         }
     }
 }
-
 
 //открывает все кнопки в случае выбора кнопки с миной
 function openAllCells() {
@@ -36,6 +39,7 @@ function openAllCells() {
             objButton = document.getElementById(numberButton);
         replaceButtonToDiv(numberButton, objButton);
     }
+
 }
 
 //установка/снятие флага на ячейке
@@ -101,6 +105,7 @@ function replaceButtonToDiv(numberButton, objButton) {
 
 //функция создаёт двумерный массив, в который забивает объекты кнопок
 function generateGame(size1, size2) {
+    allBombs = 0;
     zeroingOutDivPlayingField();
 
     var div = generatePlayingField(size1, size2);
@@ -124,9 +129,8 @@ function generateGame(size1, size2) {
     currentNumberOfMines = allBombs;
     document.getElementById("mines").innerHTML = "" + currentNumberOfMines;
     document.getElementById("difficult").innerHTML = "" + difficultOnFooter;
+    // hours = 0; minutes = 0; seconds = 0;
     setInterval(showGameTimeOnFooter, 1000);
-    //выдаём в "консоль" колличество бомб на игровом поле - временная штука. удалить
-    // document.getElementById("cell").innerHTML = "всего бомб: " + allBombs + "<br/>";
 }
 
 
